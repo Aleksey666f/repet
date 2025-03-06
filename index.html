@@ -169,11 +169,11 @@
     </footer>
 
     <script>
-        // Занятые даты и время (пример данных)
-        let bookedSlots = {
-            '2023-10-25': ['10:00', '14:00'], // Занятые времена на 25 октября
-            '2023-10-26': ['11:00', '15:00'], // Занятые времена на 26 октября
-        };
+        // Ключ для localStorage
+        const STORAGE_KEY = 'bookedSlots';
+
+        // Загружаем занятые слоты из localStorage или создаем пустой объект
+        let bookedSlots = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
 
         // Номер телефона владельца сайта в международном формате (без +)
         const WHATSAPP_NUMBER = '79778160196'; // Замените на ваш номер
@@ -222,6 +222,9 @@
                     bookedSlots[date] = [];
                 }
                 bookedSlots[date].push(time);
+
+                // Сохраняем обновленные данные в localStorage
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(bookedSlots));
 
                 // Формируем текст сообщения для WhatsApp
                 const message = `Новая запись!%0AИмя: ${name}%0AТелефон: ${phone}%0AДата: ${date}%0AВремя: ${time}`;
