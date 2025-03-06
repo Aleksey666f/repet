@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Репетитор по математике и физике</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+            background-image: url('фон.jpeg'); /* Замените ссылку на ваше изображение */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        header {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            color: #333;
+        }
+        header p {
+            margin: 10px 0 0;
+            font-size: 1.2em;
+            color: #666;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .about, .services, .schedule, .contact {
+            margin-bottom: 40px;
+        }
+        h2 {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.1em;
+            color: #555;
+        }
+        .services ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .services ul li {
+            background-color: #ffffff;
+            margin: 10px 0;
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+        }
+        .schedule form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .schedule label {
+            font-size: 1.1em;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .schedule input[type="date"], .schedule input[type="time"], .schedule input[type="text"], .schedule select {
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            background-color: #ffffff;
+        }
+        .schedule button {
+            padding: 10px 20px;
+            font-size: 1.1em;
+            background-color: #333;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .schedule button:hover {
+            background-color: #555;
+        }
+        .contact a {
+            display: inline-block;
+            background-color: #333;
+            color: #ffffff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+        }
+        .contact a:hover {
+            background-color: #555;
+        }
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-top: 1px solid #e0e0e0;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Репетитор по математике и физике</h1>
+        <p>Индивидуальные занятия для школьников и студентов</p>
+    </header>
+
+    <div class="container">
+        <section class="about">
+            <h2>Обо мне</h2>
+            <p>Меня зовут Анна, я профессиональный репетитор с 10-летним опытом работы. Помогаю ученикам улучшить успеваемость, подготовиться к экзаменам и полюбить точные науки.</p>
+        </section>
+
+        <section class="services">
+            <h2>Услуги</h2>
+            <ul>
+                <li>Подготовка к ЕГЭ и ОГЭ по математике и физике</li>
+                <li>Помощь с домашними заданиями и разбор сложных тем</li>
+                <li>Индивидуальные занятия для студентов</li>
+                <li>Онлайн-уроки для учеников из любого города</li>
+            </ul>
+        </section>
+
+        <section class="schedule">
+            <h2>Запись на занятие</h2>
+            <form id="bookingForm">
+                <label for="name">Ваше имя:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="phone">Ваш телефон:</label>
+                <input type="text" id="phone" name="phone" required>
+
+                <label for="bookingDate">Выберите дату:</label>
+                <input type="date" id="bookingDate" name="bookingDate" required>
+
+                <label for="bookingTime">Выберите время:</label>
+                <select id="bookingTime" name="bookingTime" required>
+                    <!-- Время будет заполнено динамически -->
+                </select>
+
+                <button type="submit">Записаться</button>
+            </form>
+        </section>
+
+        <section class="contact">
+            <h2>Свяжитесь со мной</h2>
+            <p>Готовы начать? Напишите мне, и мы обсудим ваши цели и план занятий.</p>
+            <a href="mailto:anna@tutor.ru">Написать на почту</a>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Репетитор по математике и физике. Все права защищены.</p>
+    </footer>
+
+    <script>
+        // Занятые даты и время (пример данных)
+        const bookedSlots = {
+            '2023-10-25': ['10:00', '14:00'], // Занятые времена на 25 октября
+            '2023-10-26': ['11:00', '15:00'], // Занятые времена на 26 октября
+        };
+
+        // Номер телефона владельца сайта в международном формате (без +)
+        const WHATSAPP_NUMBER = '79778160196'; // Замените на ваш номер
+
+        // Элементы формы
+        const dateInput = document.getElementById('bookingDate');
+        const timeSelect = document.getElementById('bookingTime');
+
+        // Функция для обновления доступного времени
+        function updateTimeSlots() {
+            const selectedDate = dateInput.value;
+            timeSelect.innerHTML = ''; // Очищаем список времени
+
+            if (selectedDate) {
+                // Генерация временных слотов с 10:00 до 20:00 с интервалом в час
+                for (let hour = 10; hour <= 20; hour++) {
+                    const time = `${hour.toString().padStart(2, '0')}:00`;
+                    const isBooked = bookedSlots[selectedDate]?.includes(time);
+
+                    // Добавляем опцию, если время не занято
+                    if (!isBooked) {
+                        const option = document.createElement('option');
+                        option.value = time;
+                        option.textContent = time;
+                        timeSelect.appendChild(option);
+                    }
+                }
+            }
+        }
+
+        // Обновляем время при изменении даты
+        dateInput.addEventListener('change', updateTimeSlots);
+
+        // Обработка формы записи
+        document.getElementById('bookingForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Предотвращаем отправку формы
+
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const date = dateInput.value;
+            const time = timeSelect.value;
+
+            if (name && phone && date && time) {
+                // Формируем текст сообщения для WhatsApp
+                const message = `Новая запись!%0AИмя: ${name}%0AТелефон: ${phone}%0AДата: ${date}%0AВремя: ${time}`;
+
+                // Формируем ссылку WhatsApp
+                const whatsappUrl = `https://wa.me/${79778160196}?text=${message}`;
+
+                // Открываем ссылку в новой вкладке
+                window.open(whatsappUrl, '_blank');
+
+                // Выводим сообщение об успешной записи
+                alert(`Вы записаны на ${date} в ${time}. Мы свяжемся с вами для подтверждения.`);
+            } else {
+                alert('Пожалуйста, заполните все поля.');
+            }
+        });
+
+        // Инициализация времени при загрузке страницы
+        updateTimeSlots();
+    </script>
+</body>
+</html>
